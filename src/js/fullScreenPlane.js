@@ -45,7 +45,7 @@ module.exports = class FullScreenPlane {
       uniforms: {
         'textuer': {
           type: 't',
-          value: loader.load('./src/assets/images/_tx.jpg', function (tx) {
+          value: loader.load('./src/assets/images/tx.jpg', function (tx) {
             tx.magFilter = THREE.NearestFilter;
             tx.minFilter = THREE.NearestFilter;
           })

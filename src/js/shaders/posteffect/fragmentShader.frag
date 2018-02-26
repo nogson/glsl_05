@@ -59,13 +59,11 @@ float rand(vec2 co){
     return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
 }
 
-
 void main() {
     vec2 position = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x,resolution.y);
     float maxX = 1.0;
     float maxY = 1.0;
-    float lines = 100.0;
-    float k = 0.0;
+    float lines = 5.0;
 
     if(resolution.x > resolution.y){
         maxY = 1.0;
@@ -75,20 +73,61 @@ void main() {
         maxX = 1.0;
     }
 
-    k = maxY / lines;
-
     //vec3 destColor = drowCircle (position, vec2(-1.0), 0.2,vec3(1.0));
     vec3 destColor = vec3(0.0);
+    float h = (maxY * 2.0) * maxY / lines;
+    // float r = rand(vec2(yy)) + sin(time * rand(vec2(yy)) * 2.0);
+    float r = 1.0;
+ 
 
-    for(float i = 0.0; i < 100.0; i+=1.0){
-        float w = maxX * 2.0;
-        float h = (maxY * 2.0) * k;
-        float x = maxX * -1.0;
-        float y = (maxY * -1.0) + h * i ;
-        float a = mod(i,2.0);
-        destColor += drawRect(position, vec2(x, y), vec2(w,h), vec3(1.0)) * a;
+    //destColor =  vec3(mod(position.y , h));
+    for(float i = 0.0; i < 5.0; i+=1.0){
+      float a = mod(i,2.0);
+        float y = (maxY * -1.0) + h * i;
+        float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
+        float x = maxX * -1.0 + r;
+        float w = maxX * 2.0 - r * r * 2.0;
+        destColor += drawRect(position, vec2(x, y), vec2(w,h * 1.0), vec3(1.0));
     }
 
-    gl_FragColor = vec4(destColor,1.0);
-	//gl_FragColor = texture2D(tDiffuse, vec2(vUv.x - destColor.r  ,vUv.y )); 
+    //gl_FragColor = vec4(destColor,1.0);
+	vec4 color = texture2D(tDiffuse, vec2(vUv.x - destColor.r * 0.05  ,vUv.y )); 
+    color = vec4(vec3((color.r + color.g + color.b)/3.0 * 1.5),1.0);
+    gl_FragColor = vec4(color.r * vUv.x,color.g * vUv.y,0.5,1.0);
 }
+
+
+// void main() {
+//     vec2 position = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x,resolution.y);
+//     float maxX = 1.0;
+//     float maxY = 1.0;
+//     float lines = 100.0;
+//     float k = 0.0;
+
+//     if(resolution.x > resolution.y){
+//         maxY = 1.0;
+//         maxX = resolution.x / resolution.y;
+//     }else{
+//         maxY = resolution.y / resolution.x;
+//         maxX = 1.0;
+//     }
+
+//     k = maxY / lines;
+
+//     //vec3 destColor = drowCircle (position, vec2(-1.0), 0.2,vec3(1.0));
+//     vec3 destColor = vec3(0.0);
+
+//     for(float i = 0.0; i < 100.0; i+=1.0){
+//         float a = mod(i,2.0);
+//         float w = maxX * 2.0 ;
+//         float h = (maxY * 2.0) * k;
+//         float x = maxX * -1.0;
+//         float y = (maxY * -1.0) + h * i ;
+//         destColor += drawRect(position, vec2(x, y), vec2(w,h), vec3(1.0)) * a;
+//     }
+
+//     gl_FragColor = vec4(destColor,1.0);
+// 	//gl_FragColor = texture2D(tDiffuse, vec2(vUv.x - destColor.r  ,vUv.y )); 
+// }
+
+
