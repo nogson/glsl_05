@@ -84,9 +84,9 @@ void main() {
     for(float i = 0.0; i < 5.0; i+=1.0){
       float a = mod(i,2.0);
         float y = (maxY * -1.0) + h * i;
-        float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
+        float r = rand(vec2(y));
         float x = maxX * -1.0;
-        float w = maxX * 2.0 + sin(time * rand(vec2(y)) * 2.0);
+        float w = maxX * 2.0 ;
         destColor += drawRect(position, vec2(x, y), vec2(w,h * 1.0), vec3(1.0));
     }
 
