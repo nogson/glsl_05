@@ -75,27 +75,18 @@ void main() {
 
     //vec3 destColor = drowCircle (position, vec2(-1.0), 0.2,vec3(1.0));
     vec3 destColor = vec3(0.0);
-    float h = (maxY * 2.0) * maxY / lines;
+    float h = (maxY * 2.0) * (maxY / lines);
     // float r = rand(vec2(yy)) + sin(time * rand(vec2(yy)) * 2.0);
     float r = 1.0;
  
 
     //destColor =  vec3(mod(position.y , h));
-    // for(float i = 0.0; i < 5.0; i+=1.0){
-    //   float a = mod(i,2.0);
-    //     float y = (maxY * -1.0) + h * i;
-    //     float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
-    //     float x = maxX * -1.0;
-    //     float w = maxX * 2.0 + sin(time * rand(vec2(y)) * 2.0);
-    //     destColor += drawRect(position, vec2(x, y), vec2(w,h * 1.0), vec3(1.0));
-    // }
-
     for(float i = 0.0; i < 5.0; i+=1.0){
       float a = mod(i,2.0);
         float y = (maxY * -1.0) + h * i;
-        //float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
+        float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
         float x = maxX * -1.0;
-        float w = maxX * 2.0 ;
+        float w = maxX * 2.0 + sin(time * rand(vec2(y)) * 2.0);
         destColor += drawRect(position, vec2(x, y), vec2(w,h * 1.0), vec3(1.0));
     }
 
