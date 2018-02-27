@@ -37,9 +37,9 @@ module.exports = class PostEffect {
   }
 
     var effect = new EffectComposer.ShaderPass(myEffect)
-    effect.renderToScreen = true
+    effect.renderToScreen = true;
 
-    composer.addPass(effect)
+    composer.addPass(effect);
   }
 
   getComposer(){

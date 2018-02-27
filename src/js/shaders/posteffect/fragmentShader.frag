@@ -79,7 +79,7 @@ void main() {
     float r = 1.0;
 
     //7.0はlinesと同じにする
-    for(float i = 0.0,; i < 7.0; i+=1.0){
+    for(float i = 0.0; i < 7.0; i+=1.0){
       float a = mod(i,2.0);
         float y = (maxY * -1.0) + h * i;
         float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
