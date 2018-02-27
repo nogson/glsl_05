@@ -87,7 +87,7 @@ void main() {
         float r = rand(vec2(y));
         float x = maxX * -1.0;
         float w = maxX * 2.0 ;
-        destColor += drawRect(position, vec2(x, y), vec2(w,h * 1.0), vec3(1.0));
+        destColor += drawRect(position, vec2(x, y), vec2(w,h * 0.9), vec3(1.0));
     }
 
     gl_FragColor = vec4(destColor,1.0);
