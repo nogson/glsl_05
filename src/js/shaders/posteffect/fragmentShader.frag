@@ -64,6 +64,7 @@ void main() {
     float maxX = 1.0;
     float maxY = 1.0;
     float lines = 5.0;
+    vec3 destColor = vec3(0.0);
 
     if(resolution.x > resolution.y){
         maxY = 1.0;
@@ -73,27 +74,19 @@ void main() {
         maxX = 1.0;
     }
 
-    vec3 destColor = vec3(0.0);
-    float h = (maxY * 2.0) * (maxY / lines);
+   
+    float h = (maxY * 2.0) / lines;
     float r = 1.0;
+
 
     for(float i = 0.0; i < 5.0; i+=1.0){
       float a = mod(i,2.0);
         float y = (maxY * -1.0) + h * i;
-        //float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
-        float x = maxX * -1.0;
-        float w = maxX * 2.0;
-        destColor += drawRect(position, vec2(x, y), vec2(w,h * 0.9), vec3(1.0));
+        float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
+        float x = maxX * -1.0 + r;
+        float w = maxX * 2.0 - r * r * 2.0;
+        destColor += drawRect(position, vec2(x, y), vec2(w,h), vec3(1.0));
     }
- 
-    // for(float i = 0.0; i < 5.0; i+=1.0){
-    //   float a = mod(i,2.0);
-    //     float y = (maxY * -1.0) + h * i;
-    //     float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
-    //     float x = maxX * -1.0;
-    //     float w = maxX * 2.0 + sin(time * rand(vec2(y)) * 2.0);
-    //     destColor += drawRect(position, vec2(x, y), vec2(w,h * 1.0), vec3(1.0));
-    // }
 
     gl_FragColor = vec4(destColor,1.0);
 	// vec4 color = texture2D(tDiffuse, vec2(vUv.x - destColor.r * 0.05  ,vUv.y )); 

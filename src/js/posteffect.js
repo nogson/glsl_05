@@ -9,6 +9,7 @@ const fragmentShader = glslify('./shaders/posteffect/fragmentShader.frag');
 let windowWidth = window.innerWidth;
 let windowHeight = window.innerHeight;
 let composer;
+let dpr = window.devicePixelRatio;
 
 module.exports = class PostEffect {
   constructor(app) {
@@ -23,7 +24,7 @@ module.exports = class PostEffect {
           },
           'resolution':{
             type:'v2',
-            value:new THREE.Vector2(windowWidth,windowHeight)
+            value:new THREE.Vector2(windowWidth * dpr,windowHeight * dpr)
           },
           'time':{
             type:'f',
