@@ -82,10 +82,11 @@ void main() {
     for(float i = 0.0; i < 7.0; i+=1.0){
       float a = mod(i,2.0);
         float y = (maxY * -1.0) + h * i;
-        float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
+        float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 4.0);
         float x = maxX * -1.0 + r;
         float w = maxX * 2.0 - r * r * 2.0;
-        destColor += drawRect(position, vec2(x, y), vec2(w,h), vec3(1.0));
+        float ay = fract(position.x + time);
+        destColor += drawRect(position, vec2(x, y + ay), vec2(w,h), vec3(1.0));
     }
 
     //gl_FragColor = vec4(destColor,1.0);
