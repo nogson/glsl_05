@@ -63,7 +63,7 @@ void main() {
     vec2 position = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x,resolution.y);
     float maxX = 1.0;
     float maxY = 1.0;
-    float lines = 5.0;
+    float lines = 7.0;
     vec3 destColor = vec3(0.0);
 
     if(resolution.x > resolution.y){
@@ -78,8 +78,8 @@ void main() {
     float h = (maxY * 2.0) / lines;
     float r = 1.0;
 
-
-    for(float i = 0.0; i < 5.0; i+=1.0){
+    //7.0はlinesと同じにする
+    for(float i = 0.0,; i < 7.0; i+=1.0){
       float a = mod(i,2.0);
         float y = (maxY * -1.0) + h * i;
         float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
