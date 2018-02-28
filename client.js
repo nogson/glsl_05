@@ -45,6 +45,16 @@ app.scene.add(plane.create());
 
 render();
 
+//リサイズイベント
+window.addEventListener('resize', function() {
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
+  app.renderer.setSize(windowWidth, windowHeight);
+  app.camera.aspect = windowWidth / windowHeight;
+  app.camera.updateProjectionMatrix();
+  posteffect.update(new THREE.Vector2(windowWidth, windowHeight));
+}, false );
+
 
 function render() {
   time = clock.getElapsedTime();
@@ -52,7 +62,7 @@ function render() {
   windowHeight = window.innerHeight;
 
   stats.update();
-  posteffect.update();
+  //posteffect.update();
   composer.render();
   composer.passes[1].uniforms.time.value = time;
   requestAnimationFrame(render);

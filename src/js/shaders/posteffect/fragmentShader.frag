@@ -83,15 +83,18 @@ void main() {
       float a = mod(i,2.0);
         float y = (maxY * -1.0) + h * i;
         float r = rand(vec2(y)) + sin(time * rand(vec2(y)) * 2.0);
-        float x = maxX * -1.0 + r;
-        float w = maxX * 2.0 - r * r * 2.0;
-        float ay = fract(position.x + time) * 1.2;
+        float x = maxX * -1.0 + r * 2.0;
+        float w = maxX * 3.0 - r * r * 2.0;
+         float ay = fract(position.x + time) * 1.2;
+        //float ay = cos(position.x + time) * 1.2;
         destColor += drawRect(position, vec2(x, y + ay), vec2(w,h), vec3(1.0));
     }
 
-    //gl_FragColor = vec4(destColor,1.0);
 	vec4 color = texture2D(tDiffuse, vec2(vUv.x - destColor.r * 0.05  ,vUv.y - destColor.r * 0.05)); 
     color = vec4(vec3((color.r + color.g + color.b)/3.0 * 1.5),1.0);
     gl_FragColor = vec4(color.r * vUv.x,color.g * vUv.y,0.5,1.0);
+
+    //gl_FragColor = vec4(destColor,1.0);
+
 }
 

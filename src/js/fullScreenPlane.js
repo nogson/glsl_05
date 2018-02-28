@@ -40,12 +40,15 @@ module.exports = class FullScreenPlane {
     //頂点のつなげ順
     geometry.setIndex(new THREE.BufferAttribute(index, 1));
 
+    //読み込む素材
+    var loadImg = windowWidth > windowHeight?'./src/assets/images/tx.jpg':'./src/assets/images/tx2.jpg';
+
     // Material作成
     let material = new THREE.ShaderMaterial({
       uniforms: {
         'textuer': {
           type: 't',
-          value: loader.load('./src/assets/images/tx.jpg', function (tx) {
+          value: loader.load(loadImg, function (tx) {
             tx.magFilter = THREE.NearestFilter;
             tx.minFilter = THREE.NearestFilter;
           })
@@ -59,4 +62,5 @@ module.exports = class FullScreenPlane {
 
     return mesh;
   }
+
 };
